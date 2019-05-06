@@ -1,0 +1,4 @@
+{
+    "prettier.tslintIntegration": false,
+    "tslint.jsEnable": true
+}
