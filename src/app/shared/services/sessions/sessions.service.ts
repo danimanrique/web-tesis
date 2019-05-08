@@ -18,12 +18,11 @@ export class SessionsService {
     }
 
   signIn(user_to_login, gettoken = null){
-    // console.log("Coneccion: ",this._http)
+    console.log("peticion: ",user_to_login, gettoken, this.url)
     if(gettoken != null){
         user_to_login.gettoken = gettoken;
     }
-    let params = JSON.stringify(user_to_login);
-    return this._http.post<any>(this.url+'/usuarioadmin/login', params);
+    return this._http.post<any>(this.url+'/usuarioadmin/login', user_to_login);
   }
 
   // signUp(user_to_register){

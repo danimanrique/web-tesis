@@ -1,0 +1,12 @@
+.text{
+    margin: 0;
+    font-size: large;
+  }
+  .error{
+    color: red;
+    text-align: center;
+  
+  }
+  .logo{
+    max-width: 50%;
+  }

@@ -2,10 +2,12 @@ import { Component, OnInit, EventEmitter, Input, Output, Renderer2 } from '@angu
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
 import { TranslateService } from '@ngx-translate/core';
+import { SessionsService } from 'app/shared/services/sessions/sessions.service';
 
 @Component({
   selector: 'app-header-side',
-  templateUrl: './header-side.template.html'
+  templateUrl: './header-side.template.html',
+  providers: [SessionsService]
 })
 export class HeaderSideComponent implements OnInit {
   @Input() notificPanel;
@@ -23,7 +25,8 @@ export class HeaderSideComponent implements OnInit {
     private themeService: ThemeService,
     private layout: LayoutService,
     public translate: TranslateService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private _sessionsService: SessionsService
   ) {}
   ngOnInit() {
     this.egretThemes = this.themeService.egretThemes;
@@ -64,5 +67,9 @@ export class HeaderSideComponent implements OnInit {
       sidebarStyle: 'compact'
     }, {transitionClass: true})
 
+  }
+
+  logOut(){
+    this._sessionsService.logOut();
   }
 }
