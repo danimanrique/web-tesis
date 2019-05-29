@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   public url: string;
 
   constructor(private _router: Router, public _http: HttpClient) {
-    this.url = environment.url;
+    this.url = environment.apiURL;
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

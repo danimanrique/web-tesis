@@ -1,9 +1,21 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import { environment } from 'environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestimoniosService {
+  public url: String;
 
-  constructor() { }
+  constructor(
+    private _http: HttpClient,
+  ) {
+    this.url = environment.apiURL;
+  }
+
+  getTestimonios() {
+    return this._http.get<any>(`${this.url}/testimonio`);
+  }
 }

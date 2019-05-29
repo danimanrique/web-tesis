@@ -14,7 +14,7 @@ export class SessionsService {
     public _http: HttpClient,
     public _router: Router
   ) {
-    this.url = environment.url;
+    this.url = environment.apiURL;
     }
 
   signIn(user_to_login, gettoken = null){
