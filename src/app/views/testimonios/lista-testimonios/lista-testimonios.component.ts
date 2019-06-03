@@ -27,7 +27,7 @@ export class ListaTestimoniosComponent implements OnInit {
   }
 
   traeme() {
-    this._loaderService.open();
+    this._loaderService.open('Cargando Datos');
     this._testimoniosService.getTestimonios().subscribe(
       res => {
         this._loaderService.close();

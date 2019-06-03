@@ -2,70 +2,77 @@
   <h5>Datos Testimonio</h5>
   <div *ngIf="testimonio">
     <ul>
-      <li>Testimoniante: <b>{{testimonio.id_testimoniante.nombre_completo}}</b></li>
-      <li>Fecha: <b *ngIf="testimonio.fecha_testimonio; else sinFecha">{{testimonio.fecha_testimonio | date: 'dd/MM/yyyy'}} <ng-template #sinFecha>-</ng-template></b></li>
-      <li><b></b></li>
+      <li>Testimoniante:
+        <pre><span [ngStyle.xs]="{'display':'none'}"
+            [ngStyle.gt-xs]="{'display':'inline'}">&#09;&#09;</span></pre>
+        <b>{{testimonio.id_testimoniante.nombre_completo}}</b></li>
+      <li>Fecha:
+        <pre><span [ngStyle.xs]="{'display':'none'}"
+            [ngStyle.gt-xs]="{'display':'inline'}">&#09;&#09;&#09;</span></pre>
+        <b *ngIf="testimonio.fecha_testimonio; else sinFecha">{{testimonio.fecha_testimonio | date: 'dd/MM/yyyy'}}
+          <ng-template #sinFecha>-</ng-template></b></li>
+      <li>
+        <pre><span [ngStyle.xs]="{'display':'none'}"
+            [ngStyle.gt-xs]="{'display':'inline'}">&#09;&#09;&#09;</span></pre>
+        <b></b></li>
     </ul>
   </div>
 </mat-card>
-<ngx-datatable class="material bg-white" 
-        [columnMode]="'force'" 
-        [headerHeight]="50"
-        [footerHeight]="0" 
-        [rowHeight]="'auto'" 
-        [rows]="cumpas">
+<ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"
+  [rowHeight]="'auto'" [rows]="cumpas">
 
-    <ngx-datatable-column [resizeable]="true" name="nombre" [flexGrow]="2" [minWidth]="300">
-      <ng-template let-column="column" ngx-datatable-header-template>
-        <span>Nombre Completo</span>
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span>{{row.id_cumpa.apellido1}} {{row.id_cumpa.apellido2}} {{row.id_cumpa.nombre1}} {{row.id_cumpa.nombre2}}</span>
-      </ng-template>
-    </ngx-datatable-column>
+  <ngx-datatable-column [resizeable]="true" name="nombre" [flexGrow]="2" [minWidth]="300">
+    <ng-template let-column="column" name="nombre" ngx-datatable-header-template>
+      <span>Nombre Completo</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span>{{row.id_cumpa.apellido1}} {{row.id_cumpa.apellido2}} {{row.id_cumpa.nombre1}}
+        {{row.id_cumpa.nombre2}}</span>
+    </ng-template>
+  </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="true" name="desde" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span>Sexo</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span >{{row.sexo}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
+  <ngx-datatable-column [resizeable]="true" name="desde" [flexGrow]="1" [minWidth]="150">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      <span>Sexo</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span>{{row.sexo}}</span>
+    </ng-template>
+  </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span>Vio desde</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span *ngIf="row.vio_desde">{{row.vio_desde | date: 'dd/MM/yyyy'}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
+  <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      <span>Vio desde</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span *ngIf="row.vio_desde">{{row.vio_desde | date: 'dd/MM/yyyy'}}</span>
+    </ng-template>
+  </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span>Vio hasta</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span *ngIf="row.vio_hasta">{{row.vio_hasta | date: 'dd/MM/yyyy'}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
+  <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      <span>Vio hasta</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span *ngIf="row.vio_hasta">{{row.vio_hasta | date: 'dd/MM/yyyy'}}</span>
+    </ng-template>
+  </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span>Modo Info</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span >{{row.id_modo_info}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
+  <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      <span>Modo Info</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span>{{row.id_modo_info}}</span>
+    </ng-template>
+  </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span >Campo</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span>{{row.id_campo_actual.descripcion}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
-  </ngx-datatable>
+  <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      <span>Campo</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span>{{row.id_campo_actual.descripcion}}</span>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
