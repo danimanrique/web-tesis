@@ -18,4 +18,8 @@ export class TestimoniosService {
   getTestimonios() {
     return this._http.get<any>(`${this.url}/testimonio`);
   }
+
+  getTestimonio(id) {
+    return this._http.get<any>(`${this.url}/testimonio/${id}`);
+  }
 }

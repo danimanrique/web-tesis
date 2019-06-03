@@ -29,12 +29,12 @@ export const rootRouterConfig: Routes = [
       {
         path: 'others',
         loadChildren: './views/others/others.module#OthersModule',
-        data: { title: 'Inicio', breadcrumb: 'INICIO' }
+        data: { title: 'Inicio', breadcrumb: 'Inicio' }
       },
       {
         path: 'testimonios',
         loadChildren: './views/testimonios/testimonios.module#TestimoniosModule',
-        data: { title: 'Testimonios', breadcrumb: 'TESTIMONIOS' }
+        data: { title: 'Testimonios', breadcrumb: 'Testimonios' }
       }
     ]
   },

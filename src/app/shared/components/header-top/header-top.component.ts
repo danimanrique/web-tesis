@@ -4,10 +4,12 @@ import { Subscription } from 'rxjs';
 import { ThemeService } from '../../../shared/services/theme.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LayoutService } from '../../services/layout.service';
+import { SessionsService } from 'app/shared/services/sessions/sessions.service';
 
 @Component({
   selector: 'app-header-top',
-  templateUrl: './header-top.component.html'
+  templateUrl: './header-top.component.html',
+  providers: [SessionsService]
 })
 export class HeaderTopComponent implements OnInit, OnDestroy {
   layoutConf: any;
@@ -30,7 +32,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     private navService: NavigationService,
     public themeService: ThemeService,
     public translate: TranslateService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private _sessionsService: SessionsService
   ) { }
 
   ngOnInit() {
@@ -76,5 +79,8 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     this.layout.publishLayoutChange({
       sidebarStyle: 'closed'
     })
+  }
+  logOut(){
+    this._sessionsService.logOut();
   }
 }

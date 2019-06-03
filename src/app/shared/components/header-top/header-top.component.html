@@ -2,9 +2,9 @@
   <div class="container">
     <div class="topnav">
       <!-- App Logo -->
-      <div class="topbar-branding">
+      <!-- <div class="topbar-branding">
         <img src="assets/images/logo.png" alt="" class="app-logo" />
-      </div>
+      </div> -->
 
       <ul class="menu" *ngIf="!layoutConf.isMobile">
         <li *ngFor="let item of menuItems; let i = index">
@@ -101,7 +101,7 @@
       </mat-menu> -->
 
       <!-- Notification toggle button -->
-      <button
+      <!-- <button
         mat-icon-button
         matTooltip="Notifications"
         (click)="toggleNotific()"
@@ -110,13 +110,13 @@
       >
         <mat-icon>notifications</mat-icon>
         <span class="notification-number mat-bg-warn">3</span>
-      </button>
+      </button> -->
       <!-- Top left user menu -->
       <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right mr-1 img-button">
-        <img src="assets/images/face-7.jpg" alt="" />
+        <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #accountMenu="matMenu">
-        <button mat-menu-item [routerLink]="['/profile/overview']">
+        <!-- <button mat-menu-item [routerLink]="['/profile/overview']">
           <mat-icon>account_box</mat-icon>
           <span>Profile</span>
         </button>
@@ -127,10 +127,10 @@
         <button mat-menu-item>
           <mat-icon>notifications_off</mat-icon>
           <span>Disable alerts</span>
-        </button>
-        <button mat-menu-item [routerLink]="['/sessions/signin']">
+        </button> -->
+        <button mat-menu-item [routerLink]="['/sessions/signin']" (click)="logOut()" fxLayoutAlign="none center">
           <mat-icon>exit_to_app</mat-icon>
-          <span>Sign out</span>
+          <span>Cerrar Sesión</span>
         </button>
       </mat-menu>
       <!-- Mobile screen menu toggle -->

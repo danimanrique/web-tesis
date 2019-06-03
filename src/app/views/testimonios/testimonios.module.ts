@@ -24,6 +24,7 @@ import { SharedModule } from './../../shared/shared.module';
 
 import { TestimoniosRoutes } from './testimonios.routing';
 import { ListaTestimoniosComponent } from './lista-testimonios/lista-testimonios.component';
+import { VerTestimonioComponent } from './ver-testimonio/ver-testimonio.component';
 
 
 @NgModule({
@@ -45,12 +46,12 @@ import { ListaTestimoniosComponent } from './lista-testimonios/lista-testimonios
     MatProgressBarModule,
     FlexLayoutModule,
     NgxDatatableModule,
-    FileUploadModule,
     SharedModule,
     RouterModule.forChild(TestimoniosRoutes)
   ],
   declarations: [
-    ListaTestimoniosComponent
+    ListaTestimoniosComponent,
+    VerTestimonioComponent
   ]
 })
 export class TestimoniosModule { }

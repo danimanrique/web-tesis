@@ -41,12 +41,12 @@ export class LayoutService {
   setAppLayout() {
     //******** SET YOUR LAYOUT OPTIONS HERE *********
     this.layoutConf = {
-      "navigationPos": "side",    // side, top
+      "navigationPos": "top",    // side, top
       "sidebarStyle": "full",     // full, compact, closed
       "dir": "ltr",               // ltr, rtl
       "useBreadcrumb": true,
       "topbarFixed": false,
-      "breadcrumb": "title"       // simple, title
+      "breadcrumb": "simple"       // simple, title
     }
 
     //******* Only for demo purpose ***
