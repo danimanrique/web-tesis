@@ -22,4 +22,8 @@ export class TestimoniosService {
   getTestimonio(id) {
     return this._http.get<any>(`${this.url}/testimonio/${id}`);
   }
+
+  getRecorridoByIdTestimoniante(id_testimoniante) {
+    return this._http.get<any>(`${this.url}/recorrido?id_testimoniante=${id_testimoniante}`);
+  }
 }

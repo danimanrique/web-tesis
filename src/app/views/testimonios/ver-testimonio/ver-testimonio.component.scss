@@ -1,9 +1,13 @@
 ul {
   li {
-    padding: .1em .5em;
+    padding: .3em .5em;
     pre {
       display: inline;
       color: #707070;
     }
   }
+}
+
+.mayuscula {
+  text-transform: uppercase;
 }

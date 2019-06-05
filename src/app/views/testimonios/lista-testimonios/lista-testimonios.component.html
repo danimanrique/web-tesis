@@ -1,4 +1,68 @@
-<div class="pt-1" >
+<div class="example-header" fxLayoutAlign="space-around start">
+  <mat-form-field fxFlex="40">
+    <mat-label>Filtros</mat-label>
+    <mat-select matNativeControl required [(ngModel)]="filtro" (selectionChange)="cambiaFiltro()">
+      <mat-option value="all">Todo</mat-option>
+      <mat-option value="nombre">Nombre</mat-option>
+      <mat-option value="fecha">Fecha</mat-option>
+      <mat-option value="campo">Campo</mat-option>
+      <mat-option value="fuente">Fuente</mat-option>
+      <mat-option value="observaciones">Observaciones</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field fxFlex="40">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Texto">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="testimoniante">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Testimoniante </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id_testimoniante.nombre_completo}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="fecha_testimonio">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fecha_testimonio?row.fecha_testimonio:''}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="campo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Campo </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id_campo_origen.descripcion}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="fuente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fuente </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id_fuente.descripcion}} </mat-cell>
+    </ng-container>
+
+     <!-- Observacion Column -->
+     <ng-container matColumnDef="observaciones">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Observacion </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.observaciones}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" class="pointer">
+    </mat-row>
+  </mat-table> 
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 100, 200, 500]"></mat-paginator>
+</div>
+
+
+<!-- <div class="pt-1">
+  <mat-card>
+    <p>Filtros:</p>
+  </mat-card>
   <ngx-datatable class="material bg-white" 
         [columnMode]="'force'" 
         [headerHeight]="50"
@@ -55,4 +119,4 @@
     </ngx-datatable-column>
 
   </ngx-datatable>
-</div>
+</div> -->

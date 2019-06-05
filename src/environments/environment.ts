@@ -5,5 +5,10 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:1337'
+  apiURL: 'http://localhost:1337',
+  modo_info: {
+    1: 'Vio a la Persona',
+    2: 'Supo por otro (mismo campo)',
+    3: 'Supo por otro (otro campo)'
+  }
 };

@@ -15,7 +15,11 @@ import {
   MatRadioModule,
   MatTabsModule,
   MatInputModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatSelectModule
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -42,7 +46,11 @@ import { VerTestimonioComponent } from './ver-testimonio/ver-testimonio.componen
     MatCheckboxModule,
     MatRadioModule,
     MatTabsModule,
+    MatSelectModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatProgressBarModule,
     FlexLayoutModule,
     NgxDatatableModule,
