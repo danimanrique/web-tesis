@@ -3,7 +3,6 @@ import { TestimoniosService } from 'app/shared/services/testimonios/testimonios.
 import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
 import { Router } from '@angular/router';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { all } from 'q';
 
 @Component({
   selector: 'app-lista-testimonios',

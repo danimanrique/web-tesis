@@ -35,6 +35,11 @@ export const rootRouterConfig: Routes = [
         path: 'testimonios',
         loadChildren: './views/testimonios/testimonios.module#TestimoniosModule',
         data: { title: 'Testimonios', breadcrumb: 'Testimonios' }
+      },
+      {
+        path: 'campos',
+        loadChildren: './views/campos/campos.module#CamposModule',
+        data: { title: 'Campos', breadcrumb: 'Campos' }
       }
     ]
   },

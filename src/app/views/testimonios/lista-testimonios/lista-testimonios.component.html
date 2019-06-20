@@ -10,7 +10,7 @@
       <mat-option value="observaciones">Observaciones</mat-option>
     </mat-select>
   </mat-form-field>
-  
+
   <mat-form-field fxFlex="40">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Texto">
   </mat-form-field>
@@ -44,79 +44,16 @@
       <mat-cell *matCellDef="let row"> {{row.id_fuente.descripcion}} </mat-cell>
     </ng-container>
 
-     <!-- Observacion Column -->
-     <ng-container matColumnDef="observaciones">
+    <!-- Observacion Column -->
+    <ng-container matColumnDef="observaciones">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Observacion </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.observaciones}} </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" class="pointer">
     </mat-row>
-  </mat-table> 
+  </mat-table>
 
   <mat-paginator [pageSizeOptions]="[10, 25, 100, 200, 500]"></mat-paginator>
 </div>
-
-
-<!-- <div class="pt-1">
-  <mat-card>
-    <p>Filtros:</p>
-  </mat-card>
-  <ngx-datatable class="material bg-white" 
-        [columnMode]="'force'" 
-        [headerHeight]="50"
-        [footerHeight]="0" 
-        [rowHeight]="'auto'" 
-        [rows]="testimonios"
-        [selected]="selected"
-        [selectionType]="'single'"
-        (select)='onSelect($event)'>
-
-    <ngx-datatable-column [resizeable]="true" name="nombre" [flexGrow]="2" [minWidth]="300">
-      <ng-template let-column="column" ngx-datatable-header-template>
-        <span>Testimoniante</span>
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span>{{row.id_testimoniante.nombre_completo}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column [resizeable]="true" name="desde" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span >Fecha</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span >{{row.fecha_testimonio?row.fecha_testimonio:''}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span >Fuente</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span >{{row.id_fuente.descripcion}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span >Campo Origen</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span >{{row.id_campo_origen.descripcion}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span >Observaciones</span> 
-      </ng-template>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span >{{row.observaciones}}</span> 
-      </ng-template>
-    </ngx-datatable-column>
-
-  </ngx-datatable>
-</div> -->

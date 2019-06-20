@@ -1,0 +1,134 @@
+<mat-card>
+  <h5 class="mb-1">Datos del Campo:</h5>
+  <div fxLayout="row" fxLayoutAlign="space-around start" *ngIf="campo">
+    <span><b>Abreviatura: </b>{{campo.abreviatura}}</span>
+    <span><b>Descripcion: </b>{{campo.descripcion}}</span>
+    <span><b>Fecha Inicio de Operaciones: </b>{{campo.fecha_inicio_operaciones | date: 'dd/MM/yyyy'}}</span>
+    <span><b>Fecha Fin de Operaciones: </b>{{campo.fecha_fin_operaciones | date: 'dd/MM/yyyy'}}</span>
+  </div>
+</mat-card>
+
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Cumpas &nbsp;<span *ngIf="cumpas">({{cumpas.length}})</span>
+    </ng-template>
+    <ngx-datatable #myTable class="material expandable" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [rows]="cumpas" [scrollbarH]="true">
+      <!-- Row Detail Template -->
+      <ngx-datatable-row-detail [rowHeight]="'auto'" #myDetailRow style="overflow-y: scroll !important">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+          <div style="padding-left:35px;">
+            <p>
+              <strong>Testimoniante: </strong>
+              <span>{{ encode(row.id_testimoniante.nombre_completo) }}</span>
+            </p>
+            <p *ngIf="row.edad && row.edad!=''">
+              <strong>Edad: </strong>
+              <span>{{ encode(row.edad) }}</span>
+            </p>
+            <p *ngIf="row.militancia && row.militancia!=''">
+              <strong>Militancia: </strong>
+              <span>{{ encode(row.militancia) }}</span>
+            </p>
+            <p *ngIf="row.ocupacion && row.ocupacion!=''">
+              <strong>Ocupación: </strong>
+              <span>{{ encode(row.ocupacion) }}</span>
+            </p>
+            <p *ngIf="row.oriundo && row.oriundo!=''">
+              <strong>Oriundo: </strong>
+              <span>{{ encode(row.oriundo) }}</span>
+            </p>
+            <p *ngIf="row.relacion_con_otros_detenidos && row.relacion_con_otros_detenidos!=''">
+              <strong>Relacion con otros Detenidos: </strong>
+              <span>{{ encode(row.relacion_con_otros_detenidos) }}</span>
+            </p>
+            <p *ngIf="row.practicas_distintivas && row.practicas_distintivas!=''">
+              <strong>Prácticas Distintivas: </strong>
+              <span>{{ encode(row.practicas_distintivas) }}</span>
+            </p>
+            <p *ngIf="row.religion && row.religion!=''">
+              <strong>Religión: </strong>
+              <span>{{ encode(row.religion) }}</span>
+            </p>
+            <p *ngIf="row.fecha_secuestro && row.fecha_secuestro!=''">
+              <strong>Fecha Secuestro: </strong>
+              <span>{{ row.fecha_secuestro | date: 'dd/MM/yyyy' }}</span>
+            </p>
+            <p *ngIf="row.descripcion_fisica && row.descripcion_fisica!=''">
+              <strong>Descripción Física: </strong>
+              <span>{{ encode(row.descripcion_fisica) }}</span>
+            </p>
+            <p *ngIf="row.senias_distintivas && row.senias_distintivas!=''">
+              <strong>Señas Distintivas: </strong>
+              <span>{{ encode(row.senias_distintivas) }}</span>
+            </p>
+            <p *ngIf="row.tareas_desarrolladas && row.tareas_desarrolladas!=''">
+              <strong>Tareas Desarrolladas: </strong>
+              <span>{{ encode(row.tareas_desarrolladas) }}</span>
+            </p>
+            <p>
+              <strong>Embarazo en Curso: </strong>
+              <span>{{ row.embarazada==0?'No':'Si' }}</span>
+            </p>
+            <p>
+              <strong>Pertenece al Consejo: </strong>
+              <span>{{ row.pertenece_al_consejo==0?'No':'Si' }}</span>
+            </p>
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail>
+      <!-- Column Templates -->
+      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+        [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+            title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [resizeable]="true" name="Nombre" [minWidth]="300">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_cumpa">{{getNombre(row)}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Apodo" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_cumpa">{{row.id_cumpa.apodo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Sexo" [minWidth]="60">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span>{{row.sexo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Vio Desde" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.vio_desde">{{row.vio_desde | date: 'dd/MM/yyyy'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Vio Hasta" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.vio_hasta">{{row.vio_hasta | date: 'dd/MM/yyyy'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Situacion" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_situacion">{{row.id_situacion.descripcion}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </mat-tab>
+
+  <mat-tab label="Represores">
+    <div fxLayoutAlign="center center">
+      <h3>EN CONSTRUCCIÓN</h3>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

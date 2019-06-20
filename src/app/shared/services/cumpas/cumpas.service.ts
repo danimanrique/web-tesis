@@ -16,10 +16,14 @@ export class CumpasService {
   }
 
   getCumpasByIdTestimonio(id) {
-    return this._http.get<any>(`${this.url}/vio?id_testimonio=${id}`);
+    return this._http.get<any>(`${this.url}/vio?id_testimonio=${id}&limit=3000`);
+  }
+
+  getCumpasByIdCampo(id) {
+    return this._http.get<any>(`${this.url}/vio?id_campo_actual=${id}&limit=3000`);
   }
 
   getCumpa(id) {
-    return this._http.get<any>(`${this.url}/cumpa/${id}`);
+    return this._http.get<any>(`${this.url}/cumpa/${id}&limit=3000`);
   }
 }

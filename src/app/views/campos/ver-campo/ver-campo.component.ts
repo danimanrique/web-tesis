@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TestimoniosService } from 'app/shared/services/testimonios/testimonios.service';
+import { CamposService } from 'app/shared/services/campos/campos.service';
 import { CumpasService } from 'app/shared/services/cumpas/cumpas.service';
 import { environment } from 'environments/environment';
 
 @Component({
-  selector: 'app-ver-testimonio',
-  templateUrl: './ver-testimonio.component.html',
-  styleUrls: ['./ver-testimonio.component.scss'],
+  selector: 'app-ver-campo',
+  templateUrl: './ver-campo.component.html',
+  styleUrls: ['./ver-campo.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class VerTestimonioComponent implements OnInit {
+export class VerCamposComponent implements OnInit {
 
   @ViewChild('myTable') table: any;
-  public idTestimonio: number;
-  public testimonio: any;
+  public idCampo: number;
+  public campo: any;
   public cumpas: any;
   public recorrido: any;
   public modo_info = environment.modo_info;
@@ -22,17 +22,16 @@ export class VerTestimonioComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _router: Router,
-    private _testimoniosService: TestimoniosService,
+    private _camposService: CamposService,
     private _cumpasService: CumpasService
   ) { }
 
   ngOnInit() {
-    this.idTestimonio = parseInt(this._route.snapshot.params['id'], 10);
-    this._testimoniosService.getTestimonio(this.idTestimonio).subscribe(
-      testimonio => {
-        this.testimonio = testimonio;
-        this._cumpasService.getCumpasByIdTestimonio(this.idTestimonio).subscribe(
+    this.idCampo = parseInt(this._route.snapshot.params['id'], 10);
+    this._camposService.getCampo(this.idCampo).subscribe(
+      campo => {
+        this.campo = campo;
+        this._cumpasService.getCumpasByIdCampo(this.idCampo).subscribe(
           cumpas => {
             this.cumpas = cumpas;
           },
@@ -40,17 +39,9 @@ export class VerTestimonioComponent implements OnInit {
             alert('Error al obtener los cumpas');
           }
         );
-        this._testimoniosService.getRecorridoByIdTestimoniante(this.testimonio.id_testimoniante.id).subscribe(
-          recorrido => {
-            this.recorrido = recorrido;
-          },
-          error => {
-            alert('Error al obtener recorrido');
-          }
-        );
       },
       error => {
-        alert('Error al obtener testimonio.');
+        alert('Error al obtener campo.');
       }
     );
   }
@@ -78,3 +69,4 @@ export class VerTestimonioComponent implements OnInit {
     return decodeURIComponent(escape(text));
   }
 }
+

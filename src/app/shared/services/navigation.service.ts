@@ -67,6 +67,13 @@ export class NavigationService {
       tooltip: 'Testimonios',
       icon: 'library_books',
       state: 'testimonios'
+    },
+    {
+      name: 'Campos',
+      type: 'link',
+      tooltip: 'Campos',
+      icon: 'house',
+      state: 'campos'
     }
   ]
 

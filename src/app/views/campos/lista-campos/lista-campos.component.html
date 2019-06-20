@@ -1,0 +1,33 @@
+<div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="abreviatura">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Abreviatura </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.abreviatura}} </mat-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="descripcion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="fecha_inicio_operaciones">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Inicio Operaciones </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.fecha_inicio_operaciones | date: 'dd/MM/yyyy'}} </mat-cell>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container matColumnDef="fecha_fin_operaciones">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fin Operaciones </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.fecha_fin_operaciones | date: 'dd/MM/yyyy'}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" class="pointer">
+      </mat-row>
+    </mat-table>
+  </div>

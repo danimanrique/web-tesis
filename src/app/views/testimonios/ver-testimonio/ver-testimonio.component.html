@@ -64,52 +64,54 @@
       </div>
     </mat-card>
   </mat-tab>
+
+
+
+
+
   <mat-tab label="Recorrido">
     <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"
       [rowHeight]="'auto'" [rows]="recorrido">
 
-      <ngx-datatable-column [resizeable]="true" name="nombre" [flexGrow]="2" [minWidth]="300">
-        <ng-template let-column="column" name="nombre" ngx-datatable-header-template>
-          <span>Nombre Completo</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Nombre" [flexGrow]="2" [minWidth]="300">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span>{{row.apellido1}} {{row.apellido2}} {{row.nombre1}} {{row.nombre2}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="desde" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Sexo</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Sexo" [flexGrow]="1" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span>{{row.sexo}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Vio desde</span>
+      <ngx-datatable-column [resizeable]="true" name="Edad" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span>{{row.edad}}</span>
         </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Vio Desde" [flexGrow]="1" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.vio_desde">{{row.vio_desde | date: 'dd/MM/yyyy'}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Vio hasta</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Vio Hasta" [flexGrow]="1" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.vio_hasta">{{row.vio_hasta | date: 'dd/MM/yyyy'}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Campo</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Campo" [flexGrow]="1" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.id_campo_actual">{{row.id_campo_actual.descripcion}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Situacion" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_situacion">{{row.id_situacion.descripcion}}</span>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
@@ -117,72 +119,194 @@
 
 
 
-  <mat-tab label="Cumpas Vistos">
-    <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"
-      [rowHeight]="'auto'" [rows]="cumpas">
 
-      <ngx-datatable-column [resizeable]="true" name="nombre" [flexGrow]="2" [minWidth]="300">
-        <ng-template let-column="column" name="nombre" ngx-datatable-header-template>
-          <span>Nombre Completo</span>
+  <mat-tab label="Cumpas">
+    <ngx-datatable #myTable class="material expandable" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [rows]="cumpas" [scrollbarH]="true">
+      <!-- Row Detail Template -->
+      <ngx-datatable-row-detail [rowHeight]="'auto'" #myDetailRow style="overflow-y: scroll !important">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+          <div style="padding-left:35px;">
+            <p *ngIf="row.edad && row.edad!=''">
+              <strong>Edad: </strong>
+              <span>{{ encode(row.edad) }}</span>
+            </p>
+            <p *ngIf="row.militancia && row.militancia!=''">
+              <strong>Militancia: </strong>
+              <span>{{ encode(row.militancia) }}</span>
+            </p>
+            <p *ngIf="row.ocupacion && row.ocupacion!=''">
+              <strong>Ocupación: </strong>
+              <span>{{ encode(row.ocupacion) }}</span>
+            </p>
+            <p *ngIf="row.oriundo && row.oriundo!=''">
+              <strong>Oriundo: </strong>
+              <span>{{ encode(row.oriundo) }}</span>
+            </p>
+            <p *ngIf="row.relacion_con_otros_detenidos && row.relacion_con_otros_detenidos!=''">
+              <strong>Relacion con otros Detenidos: </strong>
+              <span>{{ encode(row.relacion_con_otros_detenidos) }}</span>
+            </p>
+            <p *ngIf="row.practicas_distintivas && row.practicas_distintivas!=''">
+              <strong>Prácticas Distintivas: </strong>
+              <span>{{ encode(row.practicas_distintivas) }}</span>
+            </p>
+            <p *ngIf="row.religion && row.religion!=''">
+              <strong>Religión: </strong>
+              <span>{{ encode(row.religion) }}</span>
+            </p>
+            <p *ngIf="row.fecha_secuestro && row.fecha_secuestro!=''">
+              <strong>Fecha Secuestro: </strong>
+              <span>{{ row.fecha_secuestro | date: 'dd/MM/yyyy' }}</span>
+            </p>
+            <p *ngIf="row.descripcion_fisica && row.descripcion_fisica!=''">
+              <strong>Descripción Física: </strong>
+              <span>{{ encode(row.descripcion_fisica) }}</span>
+            </p>
+            <p *ngIf="row.senias_distintivas && row.senias_distintivas!=''">
+              <strong>Señas Distintivas: </strong>
+              <span>{{ encode(row.senias_distintivas) }}</span>
+            </p>
+            <p *ngIf="row.tareas_desarrolladas && row.tareas_desarrolladas!=''">
+              <strong>Tareas Desarrolladas: </strong>
+              <span>{{ encode(row.tareas_desarrolladas) }}</span>
+            </p>
+            <p>
+              <strong>Embarazo en Curso: </strong>
+              <span>{{ row.embarazada==0?'No':'Si' }}</span>
+            </p>
+            <p>
+                <strong>Pertenece al Consejo: </strong>
+                <span>{{ row.pertenece_al_consejo==0?'No':'Si' }}</span>
+              </p>
+          </div>
         </ng-template>
+      </ngx-datatable-row-detail>
+      <!-- Column Templates -->
+      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+        [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+            title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [resizeable]="true" name="Nombre" [minWidth]="300">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.id_cumpa">{{getNombre(row)}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="apodo" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Apodo</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Apodo" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.id_cumpa">{{row.id_cumpa.apodo}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="desde" [flexGrow]="1" [minWidth]="150">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Sexo</span>
-          </ng-template>
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span>{{row.sexo}}</span>
-          </ng-template>
-        </ngx-datatable-column>
-
-      <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Vio desde</span>
+      <ngx-datatable-column [resizeable]="true" name="Sexo" [minWidth]="60">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span>{{row.sexo}}</span>
         </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Vio Desde" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.vio_desde">{{row.vio_desde | date: 'dd/MM/yyyy'}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="estado" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Vio hasta</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Vio Hasta" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.vio_hasta">{{row.vio_hasta | date: 'dd/MM/yyyy'}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Modo Info</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Modo Info" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span *ngIf="row.id_modo_info">{{modo_info[row.id_modo_info]}}</span>
+          <span *ngIf="row.id_modo_info">{{modo_info[row.id_modo_info]}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [resizeable]="true" name="suscripcion" [flexGrow]="1" [minWidth]="150">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Campo</span>
-        </ng-template>
+      <ngx-datatable-column [resizeable]="true" name="Campo" [minWidth]="150">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <span *ngIf="row.id_campo_actual">{{row.id_campo_actual.descripcion}}</span>
         </ng-template>
       </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Situacion" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_situacion">{{row.id_situacion.descripcion}}</span>
+        </ng-template>
+      </ngx-datatable-column>
     </ngx-datatable>
+  </mat-tab>
+
+
+
+
+
+  <mat-tab label="Represores">
+    <div fxLayoutAlign="center center">
+       <h3>EN CONSTRUCCIÓN</h3>
+    </div>
+  </mat-tab>
+
+
+
+ <mat-tab label="Secuestro">
+   <div fxLayoutAlign="center center">
+      <h3>EN CONSTRUCCIÓN</h3>
+   </div>
+    <!--  <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"
+      [rowHeight]="'auto'" [rows]="cumpas">
+
+      <ngx-datatable-column [resizeable]="true" name="Nombre" [flexGrow]="2" [minWidth]="300">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_cumpa">{{getNombre(row)}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Apodo" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_cumpa">{{row.id_cumpa.apodo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Sexo" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span>{{row.sexo}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Vio Desde" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.vio_desde">{{row.vio_desde | date: 'dd/MM/yyyy'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Vio Hasta" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.vio_hasta">{{row.vio_hasta | date: 'dd/MM/yyyy'}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Modo Info" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_modo_info">{{modo_info[row.id_modo_info]}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Campo" [flexGrow]="1" [minWidth]="150">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngIf="row.id_campo_actual">{{row.id_campo_actual.descripcion}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [resizeable]="true" name="Situacion" [flexGrow]="1" [minWidth]="150">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span *ngIf="row.id_situacion">{{row.id_situacion.descripcion}}</span>
+          </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable> -->
   </mat-tab>
 </mat-tab-group>
