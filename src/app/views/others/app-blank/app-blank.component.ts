@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MineriaService } from 'app/shared/services/mineria/mineria.service';
 
 @Component({
   selector: 'app-blank',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppBlankComponent implements OnInit {
 
-  constructor() { }
+  public hola = 'por defecto';
+
+  constructor(
+    private _mineriaService: MineriaService
+  ) { }
 
   ngOnInit() {
+    this._mineriaService.getHolaMundo().subscribe(
+      res => {
+        this.hola = res;
+      },
+      error => {
+        alert(error.error);
+      }
+    );
   }
 
 }
