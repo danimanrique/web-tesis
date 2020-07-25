@@ -15,14 +15,14 @@ export class AppBlankComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._mineriaService.getHolaMundo().subscribe(
+   /* this._mineriaService.getHolaMundo().subscribe(
       res => {
         this.hola = res;
       },
       error => {
         alert(error.error);
       }
-    );
+    ); */
   }
 
 }

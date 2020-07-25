@@ -17,6 +17,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+//angular google maps
+import { AgmCoreModule } from '@agm/core';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -40,7 +43,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         deps: [HttpClient]
       }
     }),
-    RouterModule.forRoot(rootRouterConfig, { useHash: false })
+    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCa-eMPiSswwQqwc4HCSmLYdUo2gZVw8XI'
+    })
   ],
   declarations: [AppComponent],
   providers: [

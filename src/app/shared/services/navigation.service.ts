@@ -74,6 +74,13 @@ export class NavigationService {
       tooltip: 'Campos',
       icon: 'house',
       state: 'campos'
+    },
+    {
+      name: 'Mapa',
+      type: 'link',
+      tooltip: 'Mapa',
+      icon: 'map',
+      state: 'mapa'   //llamada asi en app.routing
     }
   ]
 
