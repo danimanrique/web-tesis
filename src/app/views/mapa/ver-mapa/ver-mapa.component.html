@@ -1,0 +1,29 @@
+<p>
+  ver-mapa works!
+  {{ map }}
+<agm-map [zoom]="5" [latitude]="-30.896032" [longitude]="-62.509024">
+	<agm-marker *ngFor="let item of marks" [latitude]="item.latitud" [longitude]="item.longitud" [iconUrl]="iconUrlFun(item.estado)">
+    <!-- [label]="item.estado"   ... ,iconMapDos.iconUrl:item.estado==2,iconMapTres.iconUrl:item.estado>2 -->
+		<agm-info-window>
+            <h2>{{item.id}}</h2>
+            <a>Direccion: {{item.direccion_secuestro}}</a>
+            <p></p>
+            <a> Peso: {{item.estado}}</a>
+    </agm-info-window>
+
+	</agm-marker>
+  <agm-marker *ngFor="let item of marksDetencion" [latitude]="item.latitud" [longitude]="item.longitud" [iconUrl]="iconMap.iconUrl" >
+		<agm-info-window>
+            <h2>{{item.id}}</h2>
+            <a>Direccion: {{item.direccion}}</a>
+            <p></p>
+            <a> Desc: {{item.descripcion}}</a>
+    </agm-info-window>
+
+	</agm-marker>
+
+</agm-map>
+
+</p>
+
+<!-- *ngFor="let item of marks" -->

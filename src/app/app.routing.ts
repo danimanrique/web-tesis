@@ -40,6 +40,11 @@ export const rootRouterConfig: Routes = [
         path: 'campos',
         loadChildren: './views/campos/campos.module#CamposModule',
         data: { title: 'Campos', breadcrumb: 'Campos' }
+      },
+      {
+        path: 'mapa',
+        loadChildren: './views/mapa/mapa.module#MapaModule',
+        data: { title: 'Mapa', breadcrumb: 'Mapa' }
       }
     ]
   },

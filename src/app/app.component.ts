@@ -12,6 +12,8 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent implements OnInit, AfterViewInit {
   appTitle = 'Tesis';
   pageTitle = '';
